@@ -1,5 +1,3 @@
-from person import Person
-
 class Person:
     def _init_(self, name):
         self.__name = name
@@ -26,17 +24,3 @@ def show_people():
     l1 = list(range(0, len(people)))
     for i in l1:
         print(people[i].name)
-
-def menu():
-    while True:
-        selection = print_menu_and_select()
-        if selection == 0:
-            break
-        if selection == 1:
-            create_person()
-        if selection == 2:
-            show_people()
-
-
-if _name_ == "_main_":
-    menu()
