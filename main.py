@@ -1,13 +1,5 @@
 from person import Person
 
-class Person:
-    def _init_(self, name):
-        self.__name = name
-    
-    @property
-    def name(self):
-        return self.__name
-
 print("\n Primero debemos comenzar creando a los jugadores.")
 people = []
 
@@ -38,5 +30,5 @@ def menu():
             show_people()
 
 
-if _name_ == "_main_":
+if __name__== "_main_":
     menu()
