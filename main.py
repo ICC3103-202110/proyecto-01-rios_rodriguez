@@ -30,5 +30,5 @@ def menu():
             show_people()
 
 
-if __name__== "_main_":
+if __name__== "__main__":
     menu()
