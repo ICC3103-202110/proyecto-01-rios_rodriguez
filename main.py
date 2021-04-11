@@ -1,18 +1,19 @@
 from person import Person
 
-print("\n Primero debemos comenzar creando a los jugadores.")
+print("\n We must first start by creating the players.")
 people = []
 
 def print_menu_and_select():
-    print("Seleccione una de las siguientes opciones: ")
-    print("0. Dejar de agregar jugadores y comenzar con el juego ")
-    print("1. Agregar jugador ")
-    print("2. Mostrar a los jugadores creados ")
+    print("Select an option: ")
+    print("0. Start the game ")
+    print("1. Add player ")
+    print("2. Show players ")
     return int(input())
 
 def create_person():
-    name = input("Ingrese el nombre del jugador ")
-    people.append(Person(name))
+    name = input("Enter player name: ")
+    rut = input('Enter player id:')
+    people.append(Person(rut,name))
 
 def show_people():
     l1 = list(range(0, len(people)))
