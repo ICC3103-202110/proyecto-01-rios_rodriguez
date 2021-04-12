@@ -1,7 +1,8 @@
 class Person:
-    def __init__(self,person_id, name):
+    def __init__(self,name, person_id, money):
         self.__name = name
         self.__person_id = person_id
+        self.__money = money
     
     @property
     def name(self):
@@ -9,3 +10,10 @@ class Person:
     @property
     def person_id(self):
         return self.__person_id
+
+ """       
+    @property
+    def money(self):
+        return self.__money
+"""
+    
