@@ -2,6 +2,9 @@ from person import Person
 
 print("\n We must first start by creating the players.")
 people = []
+cards = ["Duque", "Asesino", "Capitan", "Embajador", "Condesa", 
+        "Duque", "Asesino", "Capitan", "Embajador", "Condesa", 
+        "Duque", "Asesino", "Capitan", "Embajador", "Condesa"]
 
 def print_menu_and_select():
     print("Select an option: ")
@@ -25,11 +28,13 @@ def menu():
     while True:
         selection = print_menu_and_select()
         if selection == 0:
+            print(cards)
             break
         if selection == 1:
             create_person()
         if selection == 2:
             show_people()
+
 
 
 if __name__== "__main__":
