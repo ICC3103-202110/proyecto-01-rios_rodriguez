@@ -12,23 +12,27 @@ def print_menu_and_select():
     print("0. Start the game ")
     print("1. Add player ")
     print("2. Show players ")
-    print("3. None")
+    print("3. Show players money")
+    print("4. None")
     return int(input())
 
 def create_person():
-    name = input("Enter player name: ")
-    person_id = int(input("ingrese su ID"))
-    people.append(Person(name, person_id))
+    name = input("Enter players name: ")
+    money = 2
+    people.append(Person(name, money))
+
 
 def show_people():
-    l1 = list(range(0, len(people)))
-    for i in l1:
-        print(people[i].person_id)
-    
+    print("\nPeople created:")
+    for (i, _) in enumerate(people):
+        print(f"{i}: {people[i].name} ")
+
+   
 def show_peoples_money():
-    l1 = list(range(0, len(people)))
-    for i in l1:
-        print(f"{people[i].name} has {money} coins")
+    print("\n player coins at the moment:")
+    for (i, _) in enumerate(people):
+        print(f"{i}: {people[i].name} has {people[i].money} coins ")
+
 
 def menu():
     while True:
