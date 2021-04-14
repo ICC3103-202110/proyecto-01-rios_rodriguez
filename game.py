@@ -25,12 +25,13 @@ class game:
             raise ValueError("Remember that you can only Start the game with 3 or 4 players")
 
 
-    def show_people(self):
+    def show_people(self,dealer):
         print("\nPeople created:")
         for (i, _) in enumerate(self.player_list):
             print(f"{i}: {self.player_list[i].name} - "
             +f"{self.player_list[i].money} coins - "
             +f"{len(self.player_list[i].hand)} cards")
+        print(f"The dealer have {len(dealer.deck)} cards")
             
 
  

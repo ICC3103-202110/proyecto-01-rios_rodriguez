@@ -32,7 +32,7 @@ def menu():
             Game.create_person(Dealer)
             
         if selection == 2:
-            Game.show_people()
+            Game.show_people(Dealer)
         if selection == 3:
             show_peoples_info()
         if selection == 4:
