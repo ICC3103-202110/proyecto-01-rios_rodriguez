@@ -3,12 +3,6 @@ from game import game
 from player import Player
 from random import shuffle
 
-Game=game()
-Dealer=dealer()
-Dealer.deck_shuffle
-print("\n We must first start by creating the players.")
-print("Remember that only can play 3-4 players")
-
 
 def print_menu_and_select():
     print("Select an option: ")
@@ -21,9 +15,12 @@ def print_menu_and_select():
 
 
 
-
-
 def menu():
+    Game=game()
+    Dealer=dealer()
+    Dealer.deck_shuffle
+    print("\n We must first start by creating the players.")
+    print("Remember that only can play 3-4 players")
     while True:
         selection = print_menu_and_select()
         if selection == 0:
