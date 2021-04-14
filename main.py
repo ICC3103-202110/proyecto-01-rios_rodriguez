@@ -1,5 +1,4 @@
 from person import Person
-from numpy import random
 from random import shuffle
 
 print("\n We must first start by creating the players.")
