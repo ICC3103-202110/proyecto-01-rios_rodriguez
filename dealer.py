@@ -20,6 +20,9 @@ class dealer:
     def deal_card(self,Player):
         Player.hand.append(self.deck[0])
         self.deck.pop(0)
+
+    def move_card_to_dead():
+        pass
 '''
 d=dealer()
 d.deck_shuffle()

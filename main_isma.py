@@ -17,24 +17,27 @@ def print_menu_and_select():
 
 def menu():
     Game=game()
-    Dealer=dealer()
-    Dealer.deck_shuffle
+    Game.dealer.deck_shuffle
     print("\n We must first start by creating the players.")
     print("Remember that only can play 3-4 players")
     while True:
         selection = print_menu_and_select()
         if selection == 0:
             try:
-                Game.start_game()
+                var=Game.start_game()
+                while var:
+                    for a in Game.player_list:
+                        Game.turn(a)
+                    break
             except ValueError as e:
                 print(e)
         if selection == 1:
-            Game.create_person(Dealer)
+            Game.create_person()
             
         if selection == 2:
-            Game.show_people(Dealer)
+            Game.show_people()
         if selection == 3:
-            show_peoples_info()
+            Game.show_peoples_info()
         if selection == 4:
             break
          
