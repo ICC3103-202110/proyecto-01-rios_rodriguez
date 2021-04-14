@@ -1,0 +1,2 @@
+class Countess:
+    pass
