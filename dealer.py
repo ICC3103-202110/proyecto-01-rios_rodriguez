@@ -3,10 +3,11 @@ from player import Player
 from random import shuffle
 class dealer:
     def __init__(self):
-        self.__deck = [card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('contessa'),
-                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('contessa'),
-                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('contessa') ] 
+        self.__deck = [card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
+                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
+                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa') ] 
         self.__dead_deck = list()
+        
     @property
     def deck(self):
         return self.__deck

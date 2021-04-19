@@ -1,4 +1,3 @@
-
 from player import Player
 from dealer import dealer
 
@@ -25,6 +24,7 @@ class game:
     def start_game(self):
         if 3 <= len(self.player_list) <= 4:
             return True
+
         else:
             raise ValueError("Remember that you can only Start the game with 3 or 4 players")
 
