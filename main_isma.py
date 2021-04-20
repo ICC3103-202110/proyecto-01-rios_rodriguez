@@ -1,17 +1,8 @@
 from dealer import dealer
+from console import Console
 from game import game
 from player import Player
 from random import shuffle
-
-def print_menu_and_select():
-    print("Select an option: ")
-    print("0. Start the game ")
-    print("1. Add player ")
-    print("2. Show players ")
-    print("3. Show all the players information")
-    print('4. Quit')
-    return int(input())
-
 
 def menu():
     Game=game()
@@ -19,7 +10,7 @@ def menu():
     print("\n We must first start by creating the players.")
     print("Remember that only can play 3 or 4 players")
     while True:
-        selection = print_menu_and_select()
+        selection = Game.console.print_menu_and_select()
         if selection == 0:
             try:
                 var=Game.start_game()
@@ -35,8 +26,6 @@ def menu():
         if selection == 2:
             Game.show_people()
         if selection == 3:
-            Game.show_peoples_info()
-        if selection == 4:
             break
          
 

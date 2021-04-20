@@ -3,46 +3,46 @@ from dealer import dealer
 from card import card
 from game import game
 
-def game1():
-    contador = 0 
-    while True:
-        
-        print(f"Starts {self.player_list[contador]}. He/she has {self.player_list[contador].hand}")
-        answer = input("What action do you want to do? ")
-        
-        if answer == "hit":
-            hit()
-        elif answer == "income":
-            income()
-        elif answer == "foreign aid":
-            challenge()
-            # buscar la manera de que si alguien lo desafia, no entre a esta funcion
-            counterattack()
-            foreign_aid()
+Game=game()
+contador = 0 
+while True:
+    
+    print(f"Starts {Game.player_list[contador]}. He/she has {Game.player_list[contador].hand}")
+    answer = input("What action do you want to do? ")
+    
+    if answer == "hit":
+        hit()
+    elif answer == "income":
+        income()
+    elif answer == "foreign aid":
+        challenge()
+        # buscar la manera de que si alguien lo desafia, no entre a esta funcion
+        counterattack()
+        foreign_aid()
 
-        elif answer == "duke tax":
-            challenge()
-            duke_tax()
+    elif answer == "duke tax":
+        challenge()
+        duke_tax()
 
-        elif answer == "assassin murder":
-            challenge()
-            counterattack()
-            assassin_murder()
+    elif answer == "assassin murder":
+        challenge()
+        counterattack()
+        assassin_murder()
 
-        elif answer == "captain extortion":
-            challenge()
-            counterattack()
-            captain_extortion()
+    elif answer == "captain extortion":
+        challenge()
+        counterattack()
+        captain_extortion()
 
-        elif answer == "ambassador change":
-            challenge()
-            counterattack()
-            ambassador_change()
+    elif answer == "ambassador change":
+        challenge()
+        counterattack()
+        ambassador_change()
 
-        contador += 1
-        question = int(input("0. Quit "))
-        if question == 0:
-            break
+    contador += 1
+    question = int(input("0. Quit "))
+    if question == 0:
+        break
 
 
 def challenge():

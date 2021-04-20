@@ -24,18 +24,15 @@ class dealer:
 
     def move_card_to_dead():
         pass
-'''
+
 d=dealer()
 d.deck_shuffle()
 p=Player('ismael',5)
-j=0
-for i in d.deck:
-    print(j,i.type)
-    j+=1
+d.deal_card(p)
+d.deal_card(p)
 d.deal_card(p)
 print('')
-j=0
-for i in d.deck:
-    print(j,i.type)
-    j+=1
-#print(p.hand[0].type)'''
+#p.look_at_the_hand()
+#print(p.hand[0].type)
+#print(p.hand[1].type)
+

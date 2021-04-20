@@ -27,7 +27,7 @@ c1 = card('Assassin')
 c2 = card('Captain')
 c3 = card('Ambassador')
 c4 = card('Contessa')
-print(c2.type)
+#print(c2.type)
 
 
 

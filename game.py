@@ -1,16 +1,22 @@
+from console import Console
 from player import Player
 from dealer import dealer
 
 class game:
+    
     def __init__(self):
         self.__player_list = []
         self.__dealer = dealer()
+        self.__console= Console()
     @property
     def player_list(self):
         return self.__player_list
     @property
     def dealer(self):
         return self.__dealer
+    @property
+    def console(self):
+        return self.__console
 
     def create_person(self):
         name = input("Enter players name: ")
@@ -30,33 +36,42 @@ class game:
 
 
     def show_people(self):
-        print("\nPlayer list:")
+        print("Player list:")
         for (i, _) in enumerate(self.player_list):
             print(f"{i}: {self.player_list[i].name} - "
             +f"{self.player_list[i].money} coins - "
             +f"{len(self.player_list[i].hand)} cards")
         print(f"The dealer have {len(self.dealer.deck)} cards")
 
-    def print_turn_menu(self):
-         print("Select an option: ")
-         print("0. Look at your hand ")
-         print("1. General action ")
-         print("2. Select a card ")
-         return int(input())
 
     def turn(self,player):
-        print(f'\n{player.name} Turn!:')
-        self.show_people()
-        print('Dead Cards:')
-        '''
-        string= '['                                         #no puedo probar esto todavia :/
-        for i in range(len(self.dealer.dead_deck)):
-            string+=f'{self.dealer.dead_deck[i].type},'
-        string+=']'
-        print(string)
-        '''
-        self.print_turn_menu()
-
+        while True:
+            print(f'\n{player.name} Turn!:')
+            self.show_people()
+            print('Dead Cards:')
+            select=self.console.print_turn_menu()
+            if select==0:
+                print(player.look_at_the_hand())
+            elif select==1:
+                select2=self.console.print_general_action_menu()
+                if select2==0:
+                    pass #coup/hit
+                elif select2==1:
+                    pass #income
+                elif select2==2:
+                    pass #Foreign aid
+                break
+            elif select==2:
+                select2=self.console.print_character_action_menu()
+                if select2==0:
+                    pass #Duke tax
+                elif select2==1:
+                    pass #Assassin murder
+                elif select2==2:
+                    pass #Captain Extorsion
+                elif select2==3:
+                    pass #ambassador change
+                break
 
 
 
