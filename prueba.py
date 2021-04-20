@@ -4,9 +4,10 @@ from card import card
 from game import game
 
 def game1():
+    contador = 0 
     while True:
-        contador = 0
-        print(f"Starts {self.player_list[contador]}. He/she has {self.player_list[i].hand}")
+        
+        print(f"Starts {self.player_list[contador]}. He/she has {self.player_list[contador].hand}")
         answer = input("What action do you want to do? ")
         
         if answer == "hit":
@@ -38,10 +39,6 @@ def game1():
             counterattack()
             ambassador_change()
 
-
-
-
-
         contador += 1
         question = int(input("0. Quit "))
         if question == 0:
@@ -59,6 +56,8 @@ def challenge():
             continue
     
 def counterattack():
+
+
     if answer == "assassin murder":
         print("Show that you have the card to stop the murderer")
         contessa_stop_murder()
@@ -73,11 +72,9 @@ def counterattack():
 
 
 
-
-
 def hit():
     print("This action costs 7 coins.")
-    self.player_list.money - 7
+    self.player_list[contador].money - 7
     input("Who do you want to hit? ")
     #hay que poder seleccionar al jugador elegido para que se aplique en la funcion turn card
 
@@ -90,13 +87,13 @@ def turn_card():
     pass
 
 def income():
-    return self.player_list[i].money + 1
+    return self.player_list[contador].money + 1
 
 def foreign_aid():
-    return self.player_list[i].money + 2
+    return self.player_list[contador].money + 2
 
 def duke_tax():
-    return self.player[i].money + 3
+    return self.player[contador].money + 3
 
 def assassin_murder():
     pass
