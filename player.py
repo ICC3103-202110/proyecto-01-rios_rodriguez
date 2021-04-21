@@ -22,3 +22,49 @@ class Player:
 
 
 
+    def income():
+        print("hola") 
+        #return self.player_list[player].money + 1
+
+    def foreign_aid():
+        return self.player_list[contador].money + 2
+
+    def duke_tax():
+        return self.player[contador].money + 3
+
+    def assassin_murder():
+        print("You have to turn one of your cards")
+
+        pass
+
+        self.player[contador].money - 3
+        pass
+
+    def captain_extortion():
+        pass
+
+    def ambassador_change():
+        pass
+
+    def duke_stop_foreign_aid():
+
+        pass
+
+    def contessa_stop_murder():
+        pass
+
+    def ambassador_or_captain_stop_extortion():
+        pass
+
+
+
+    
+
+
+
+
+
+
+
+
+

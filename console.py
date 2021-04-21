@@ -9,6 +9,7 @@ class Console():
         return int(input())
 
     def print_turn_menu(self):
+         print("")
          print("Select an option: ")
          print("0. Look at your hand ")
          print("1. General action ")
@@ -29,3 +30,4 @@ class Console():
          print("2. Captain Extortion ")
          print("3. Ambassador Change")
          return int(input())
+         

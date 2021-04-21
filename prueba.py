@@ -57,7 +57,6 @@ def challenge():
     
 def counterattack():
 
-
     if answer == "assassin murder":
         print("Show that you have the card to stop the murderer")
         contessa_stop_murder()
@@ -69,7 +68,6 @@ def counterattack():
     elif answer == "duke stop foreign aid":
         print("Show that you have the card to stop")
         duke_stop_foreign_aid()
-
 
 
 def hit():
@@ -104,7 +102,7 @@ def captain_extortion():
 def ambassador_change():
     pass
 
-def duke_stop_foreign_aid()):
+def duke_stop_foreign_aid():
     pass
 
 def contessa_stop_murder():

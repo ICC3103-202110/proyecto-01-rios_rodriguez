@@ -7,7 +7,7 @@ class game:
     def __init__(self):
         self.__player_list = []
         self.__dealer = dealer()
-        self.__console= Console()
+        self.__console = Console()
     @property
     def player_list(self):
         return self.__player_list
@@ -32,11 +32,11 @@ class game:
             return True
 
         else:
-            raise ValueError("Remember that you can only Start the game with 3 or 4 players")
+            raise ValueError("Remember that you can only start the game with 3 or 4 players")
 
 
     def show_people(self):
-        print("Player list:")
+        print("\nPlayer list:")
         for (i, _) in enumerate(self.player_list):
             print(f"{i}: {self.player_list[i].name} - "
             +f"{self.player_list[i].money} coins - "
@@ -49,14 +49,16 @@ class game:
             print(f'\n{player.name} Turn!:')
             self.show_people()
             print('Dead Cards:')
-            select=self.console.print_turn_menu()
-            if select==0:
+            select = self.console.print_turn_menu()
+            if select == 0:
                 print(player.look_at_the_hand())
-            elif select==1:
-                select2=self.console.print_general_action_menu()
+            elif select == 1:
+                select2 = self.console.print_general_action_menu()
                 if select2==0:
+
                     pass #coup/hit
                 elif select2==1:
+                    player.income(player)
                     pass #income
                 elif select2==2:
                     pass #Foreign aid
