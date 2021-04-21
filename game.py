@@ -61,8 +61,31 @@ class game:
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
-        print(self.player_list[question].hand[answer].type)
+        print(self.player_list[question].hand[answer-1].type)
         print(self.dealer.dead_deck[0].type)
+
+    def assassin(self, player):
+        player.plus_money(-3)
+        print("Who do you want to Assassin?")
+        for (i, _) in enumerate(self.player_list):
+            if self.player_list[i] == player:
+                continue
+            else:
+                print(f"{i}: {self.player_list[i].name}")
+        question = int(input("(Select (0,1,2): "))
+        print(f"\n The player {self.player_list[question].name} has to turn up a card")
+        j = 0
+        for i in self.player_list[question].hand:
+            print(j,":", i.type)
+            j += 1
+        
+        answer = int(input("Select an option (0/1): "))
+        self.dealer.dead_deck.append(self.player_list[question].hand[answer])
+        self.player_list[question].hand.pop(answer)
+        print(self.player_list[question].hand[answer-1].type)
+        print(self.dealer.dead_deck[0].type)
+
+    
 
     
 
@@ -76,7 +99,22 @@ class game:
 
     def duke_tax(self, player):
         player.plus_money(3)
+    def captain_extortion(self, player):
+        print("Who do you want to extortion?")
+        for (i, _) in enumerate(self.player_list):
+            if self.player_list[i] == player:
+                continue
+            else:
+                print(f"{i}: {self.player_list[i].name}")
+        question = int(input("(Select (0,1,2): "))
+        print(f"\n The player {self.player_list[question].name} its going to lose 2 coins")
+        if self.player_list[question].money == 1:
 
+            self.player_list[question].plus_money(-1)
+            player.plus_money(+1)
+        else:
+            self.player_list[question].plus_money(-2)
+            player.plus_money(+2)
 
     def turn(self,player):
         while True:
@@ -91,27 +129,30 @@ class game:
                 select2 = self.console.print_general_action_menu()
                 if select2==0:
                     self.hit(player)
-                    pass #coup/hit
+                    
                 elif select2==1:
 
                     self.income(player)
 
-                    pass #income
+                    
                 elif select2==2:
                     self.foreign_aid(player)
-                    pass #Foreign aid
+                    
                 break
             elif select==2:
                 select2=self.console.print_character_action_menu()
                 if select2==0:
                     player.duke_tax(player)
-                    pass #Duke tax
+                    
                 elif select2==1:
-                    pass #Assassin murder
+                    self.assassin(player)
+                    
                 elif select2==2:
-                    pass #Captain Extorsion
+                    self.captain_extortion(player)
+                    
                 elif select2==3:
                     pass #ambassador change
+
                 break
 
 
