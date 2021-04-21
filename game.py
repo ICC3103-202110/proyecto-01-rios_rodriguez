@@ -58,11 +58,13 @@ class game:
             print(j,":", i.type)
             j += 1
         
+        answer = int(input("Select an option (0/1): "))
+        self.dealer.dead_deck.append(self.player_list[question].hand[answer])
+        self.player_list[question].hand.pop(answer)
+        print(self.player_list[question].hand[answer].type)
+        print(self.dealer.dead_deck[0].type)
 
-
-        #print(f"0: {self.player_list[question].hand[0].type}")
-       
-
+    
 
 
 
@@ -81,6 +83,7 @@ class game:
             print(f'\n{player.name} Turn!:')
             self.show_people()
             print('Dead Cards:')
+            self.dealer.print_dead_deck()
             select = self.console.print_turn_menu()
             if select == 0:
                 print(player.look_at_the_hand())

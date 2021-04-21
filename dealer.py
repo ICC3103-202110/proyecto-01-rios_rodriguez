@@ -22,8 +22,11 @@ class dealer:
         Player.hand.append(self.deck[0])
         self.deck.pop(0)
 
-    def move_card_to_dead():
-        pass
+    def print_dead_deck(self):
+        for i in self.dead_deck:
+            print(i.type)
+
+
 
 d=dealer()
 d.deck_shuffle()
