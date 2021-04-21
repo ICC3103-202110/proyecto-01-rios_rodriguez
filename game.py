@@ -43,6 +43,38 @@ class game:
             +f"{len(self.player_list[i].hand)} cards")
         print(f"The dealer have {len(self.dealer.deck)} cards")
 
+    def hit(self, player):
+        player.plus_money(-7)
+        print("Who do you want to hit?")
+        for (i, _) in enumerate(self.player_list):
+            if self.player_list[i] == player:
+                continue
+            else:
+                print(f"{i}: {self.player_list[i].name}")
+        question = int(input("(Select (0,1,2): "))
+        print(f"\n The player {self.player_list[question].name} has to turn up a card")
+        j = 0
+        for i in self.player_list[question].hand:
+            print(j,":", i.type)
+            j += 1
+        
+
+
+        #print(f"0: {self.player_list[question].hand[0].type}")
+       
+
+
+
+
+    def income(self, player):
+        player.plus_money(1)
+
+    def foreign_aid(self, player):
+        player.plus_money(2)
+
+    def duke_tax(self, player):
+        player.plus_money(3)
+
 
     def turn(self,player):
         while True:
@@ -55,17 +87,21 @@ class game:
             elif select == 1:
                 select2 = self.console.print_general_action_menu()
                 if select2==0:
-
+                    self.hit(player)
                     pass #coup/hit
                 elif select2==1:
-                    player.income(player)
+
+                    self.income(player)
+
                     pass #income
                 elif select2==2:
+                    self.foreign_aid(player)
                     pass #Foreign aid
                 break
             elif select==2:
                 select2=self.console.print_character_action_menu()
                 if select2==0:
+                    player.duke_tax(player)
                     pass #Duke tax
                 elif select2==1:
                     pass #Assassin murder

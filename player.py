@@ -13,6 +13,13 @@ class Player:
     def hand(self):
         return self.__hand
 
+    @money.setter
+    def money(self, value):
+        if value < 0:
+            self.money = 0 
+        else:
+            self.money = value
+
     def look_at_the_hand(self):
         print('Your cards are:')
         j=0
@@ -20,25 +27,16 @@ class Player:
             print(j,i.type)
             j+=1
 
+    def plus_money(self, value):
+        self.__money += value
 
-
-    def income():
-        print("hola") 
-        #return self.player_list[player].money + 1
-
-    def foreign_aid():
-        return self.player_list[contador].money + 2
-
-    def duke_tax():
-        return self.player[contador].money + 3
-
+    
     def assassin_murder():
         print("You have to turn one of your cards")
 
         pass
 
-        self.player[contador].money - 3
-        pass
+
 
     def captain_extortion():
         pass
