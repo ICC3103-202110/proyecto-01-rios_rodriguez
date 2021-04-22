@@ -199,11 +199,14 @@ class game:
                                 value = "Duke"
                                 if self.yes_challenge(player,value) == True:
                                     print('True')
-                                    pass
+                                    self.duke_tax(player)
                                 else:
-                                    print('Bluff')
+                                    print('You lose, turn up a card:')
+                                    answer=int(input('Choose a card: '))
+                                    self.dealer.dead_deck.append(player.hand[answer])
+                                    player.hand.pop(answer)
                             elif game_challenge== False:
-                                player.duke_tax(player)
+                                self.duke_tax(player)
                     self.duke_tax(player)
                     """
                     value = "Duke"
