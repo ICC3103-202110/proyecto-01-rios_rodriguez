@@ -1,6 +1,7 @@
 from console import Console
 from player import Player
 from dealer import dealer
+import random
 
 class game:
     
@@ -115,6 +116,30 @@ class game:
         else:
             self.player_list[question].plus_money(-2)
             player.plus_money(+2)
+    def deal_to_list(self,list):
+        num= random.randint(0,len(self.dealer.deck)-1)
+        list.append(self.dealer.deck[num])
+        self.dealer.deck.pop(num)
+
+    def ambassador_change(self,player):
+        Change=[]
+        for i in player.hand:
+            Change.append(i)
+        self.deal_to_list(Change)
+        self.deal_to_list(Change)
+        j=0
+        for i in Change:
+            print(j,':',i.type)
+            j+=1
+        answer= int(input('select your first card:'))
+        answer2= int(input('select your second card:'))
+        player.hand.pop(0)
+        player.hand.pop(0)
+        player.hand.append(Change[answer])
+        player.hand.append(Change[answer2])
+        for i in Change:
+            if i!=Change[answer] and i!=Change[answer2]:
+                self.dealer.deck.append(i) 
 
     def turn(self,player):
         while True:
@@ -151,7 +176,7 @@ class game:
                     self.captain_extortion(player)
                     
                 elif select2==3:
-                    pass #ambassador change
+                    self.ambassador_change(player)
 
                 break
 

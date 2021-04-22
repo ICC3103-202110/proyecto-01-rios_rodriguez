@@ -40,4 +40,5 @@ print('')
 #print(p.hand[0].type)
 #print(p.hand[1].type)
 
-'''
+for i in p.hand:
+    print(i.type)'''
