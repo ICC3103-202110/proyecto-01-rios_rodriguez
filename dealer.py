@@ -1,6 +1,6 @@
 from card import card
 from player import Player
-from random import shuffle
+import random
 class dealer:
     def __init__(self):
         self.__deck = [card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
@@ -15,19 +15,20 @@ class dealer:
     def dead_deck(self):
         return self.__dead_deck
     def deck_shuffle(self):
-        shuffle(self.deck)
+        random.shuffle(self.deck)
         return self.deck
 
     def deal_card(self,Player):
-        Player.hand.append(self.deck[0])
-        self.deck.pop(0)
+        num= random.randint(0,len(self.deck)-1)
+        Player.hand.append(self.deck[num])
+        self.deck.pop(num)
 
     def print_dead_deck(self):
         for i in self.dead_deck:
             print(i.type)
 
 
-
+'''
 d=dealer()
 d.deck_shuffle()
 p=Player('ismael',5)
@@ -39,3 +40,4 @@ print('')
 #print(p.hand[0].type)
 #print(p.hand[1].type)
 
+'''
