@@ -7,7 +7,7 @@ from random import shuffle
 def menu():
     Game=game()
     Game.dealer.deck_shuffle
-    print(" We must first start by creating the players.")
+    print("\nWe must first start by creating the players.")
     print("Remember that only can play 3 or 4 players")
     while True:
         selection = Game.console.print_menu_and_select()
@@ -17,9 +17,16 @@ def menu():
                 while var:
                     for a in Game.player_list:
                         Game.turn(a)
+                        
                         for j in Game.player_list:
                             if j!=a:
-                                Game.challenge(a)
+                                game_challenge = Game.challenge(j)
+                                if game_challenge == True:
+                                    Game.yes_challenge(a)
+                                    pass
+                                else:
+                                    pass
+    
                     break
             except ValueError as e:
                 print(e)
@@ -31,7 +38,6 @@ def menu():
         if selection == 3:
             break
          
-
 if __name__== "__main__":
     menu()
 

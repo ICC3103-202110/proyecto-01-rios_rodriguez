@@ -39,7 +39,7 @@ class game:
             print(f"{i}: {self.player_list[i].name} - "
             +f"{self.player_list[i].money} coins - "
             +f"{len(self.player_list[i].hand)} cards")
-        print(f"The dealer have {len(self.dealer.deck)} cards")
+        print(f"\nThe dealer has {len(self.dealer.deck)} cards")
 
     def hit(self, player):
         player.plus_money(-7)
@@ -80,8 +80,6 @@ class game:
         self.player_list[question].hand.pop(answer)
         print(self.player_list[question].hand[answer-1].type)
         print(self.dealer.dead_deck[0].type)
-
-    
 
 
     def income(self, player):
@@ -134,31 +132,47 @@ class game:
             if i != Change[answer] and i != Change[answer2]:
                 self.dealer.deck.append(i) 
 
-    def challenge(self):
-        print("Someone wants to challenge him/her? Yes or No? (y/n)")
-        for (i,_) in enumerate(self.player_list):
-            answer = input(f"{self.player_list[i].name}: ")
-            # ver el tema de que no se caiga si uno pone yes or no en minuscula
-            if answer == "Yes":
-                continue
-            elif answer == "No":
-                continue
+    def challenge(self, player):
+        answer = input(f"{player.name}, do you want to challenge him/her?: ")
+        if answer == "y":
+            return True     
+        elif answer == "n":
+            return False
+
+    def yes_challenge(self, player):
+        player.look_at_the_hand()
+
+        for i in player.hand:
+            if value == i.type:
+                return True
+            else:
+                return False
+    
+
+
+
+
+
+
+
+
 
     def turn(self,player):
         while True:
             print(f'\n{player.name} Turn!:')
             self.show_people()
-            print('\n Dead Cards:')
+            print('\nDead Cards:')
             self.dealer.print_dead_deck()
             select = self.console.print_turn_menu()
             if select == 0:
-                print(player.look_at_the_hand())
+                player.look_at_the_hand()
 
             elif select == 1:
                 select2 = self.console.print_general_action_menu()
 
                 if select2==0:
                     self.hit(player)
+                    #esta accion no puede ser bloqueada
                   
                 elif select2==1:
                     self.income(player)
@@ -172,8 +186,16 @@ class game:
 
                 if select2==0:
                     player.duke_tax(player)
-                    
+                    """
+                    value = "Duke"
+                    if yes_challenge(player) == True:
+                        player.duke_tax(player)
+                    else:
+                        print("You don´t have the card, you loose ......")
+                        pass
+                    """
                 elif select2==1:
+                    
                     self.assassin(player)
                     
                 elif select2==2:

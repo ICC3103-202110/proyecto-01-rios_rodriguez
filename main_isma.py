@@ -30,7 +30,6 @@ def menu():
             Game.show_people()
         if selection == 3:
             break
-         
 
 if __name__== "__main__":
     menu()

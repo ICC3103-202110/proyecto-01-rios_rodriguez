@@ -24,8 +24,9 @@ class Player:
         print('Your cards are:')
         j=0
         for i in self.hand:
-            print(j,i.type)
+            print(j,":",i.type)
             j+=1
+        
 
     def plus_money(self, value):
         self.__money += value
