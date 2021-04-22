@@ -1,3 +1,4 @@
+from card import card
 from console import Console
 from player import Player
 from dealer import dealer
@@ -141,27 +142,20 @@ class game:
 
     def yes_challenge(self, player,value):
         player.look_at_the_hand()
-
-        for i in player.hand:
-            if value == i.type:
+        lista=[]
+        if len(player.hand) == 2:
+            if player.hand[0].type == value or player.hand[1].type == value:
                 return True
             else:
                 return False
+        elif len(player.hand) == 1:
+            if player.hand[0].type == value:
+                return True
+            else:
+                return False
+
+
     
-            """
-    def challenge2(self,player):
-         for j in Game.player_list:
-                if j!=a:
-                    game_challenge = Game.challenge(j)
-                        if game_challenge == True:
-                             Game.yes_challenge(a)
-                             pass
-                        else:
-                             pass
-
-                """
-
-
 
 
     def turn(self,player):
@@ -188,34 +182,42 @@ class game:
                     self.foreign_aid(player)          
                 break
 
-            elif select==2:
-                select2=self.console.print_character_action_menu()
+            elif select == 2:
+                select2 = self.console.print_character_action_menu()
 
-                if select2==0:
+                if select2 == 0:
                     for i in self.player_list:
-                        if i!=player:
-                            game_challenge= self.challenge(i)
-                            if game_challenge== True:
+                        if i != player:
+                            game_challenge = self.challenge(i)
+                            if game_challenge == True:
                                 value = "Duke"
-                                if self.yes_challenge(player,value) == True:
-                                    print('True')
-                                    self.duke_tax(player)
+                                v = self.yes_challenge(player,value)
+                                if v == True:
+                                    print('You won the challenge')
+                                    answer = True
+                                    self.dealer.deck.append(card(value))
+                                    j = 0
+                                    for i in player.hand:
+                                        if i.type == value:
+                                            player.hand.pop(j)
+                                        j+=1
+                                    self.dealer.deal_card(player)
+                                    break
                                 else:
                                     print('You lose, turn up a card:')
-                                    answer=int(input('Choose a card: '))
+                                    answer = int(input('Choose a card: '))
                                     self.dealer.dead_deck.append(player.hand[answer])
                                     player.hand.pop(answer)
-                            elif game_challenge== False:
-                                self.duke_tax(player)
-                    self.duke_tax(player)
-                    """
-                    value = "Duke"
-                    if yes_challenge(player) == True:
-                        player.duke_tax(player)
+                                    answer = False
+                                    break
+                            elif game_challenge == False:
+                                answer = True
+                    if answer == True:
+                        self.duke_tax(player)
+
                     else:
-                        print("You don´t have the card, you loose ......")
                         pass
-                    """
+                 
                 elif select2==1:
                     
                     self.assassin(player)
