@@ -1,7 +1,7 @@
 class Console():
     
     def print_menu_and_select(self):
-        print("Select an option: ")
+        print("\nSelect an option: ")
         print("0. Start the game ")
         print("1. Add player ")
         print("2. Show players ")

@@ -26,15 +26,12 @@ class game:
         self.dealer.deal_card(PJ)
         self.dealer.deal_card(PJ)
         self.player_list.append(PJ)
-
         
     def start_game(self):
         if 3 <= len(self.player_list) <= 4:
             return True
-
         else:
             raise ValueError("Remember that you can only start the game with 3 or 4 players")
-
 
     def show_people(self):
         print("\nPlayer list:")
@@ -58,7 +55,6 @@ class game:
         for i in self.player_list[question].hand:
             print(j,":", i.type)
             j += 1
-        
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
@@ -78,8 +74,7 @@ class game:
         j = 0
         for i in self.player_list[question].hand:
             print(j,":", i.type)
-            j += 1
-        
+            j += 1 
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
@@ -87,9 +82,6 @@ class game:
         print(self.dealer.dead_deck[0].type)
 
     
-
-    
-
 
 
     def income(self, player):
@@ -100,6 +92,7 @@ class game:
 
     def duke_tax(self, player):
         player.plus_money(3)
+
     def captain_extortion(self, player):
         print("Who do you want to extortion?")
         for (i, _) in enumerate(self.player_list):
@@ -108,14 +101,14 @@ class game:
             else:
                 print(f"{i}: {self.player_list[i].name}")
         question = int(input("(Select (0,1,2): "))
-        print(f"\n The player {self.player_list[question].name} its going to lose 2 coins")
+        print(f"\n The player {self.player_list[question].name} will loose 2 coins")
         if self.player_list[question].money == 1:
-
             self.player_list[question].plus_money(-1)
             player.plus_money(+1)
         else:
             self.player_list[question].plus_money(-2)
             player.plus_money(+2)
+
     def deal_to_list(self,list):
         num= random.randint(0,len(self.dealer.deck)-1)
         list.append(self.dealer.deck[num])
@@ -131,14 +124,14 @@ class game:
         for i in Change:
             print(j,':',i.type)
             j+=1
-        answer= int(input('select your first card:'))
-        answer2= int(input('select your second card:'))
+        answer= int(input('Select your first card:'))
+        answer2= int(input('Select your second card:'))
         player.hand.pop(0)
         player.hand.pop(0)
         player.hand.append(Change[answer])
         player.hand.append(Change[answer2])
         for i in Change:
-            if i!=Change[answer] and i!=Change[answer2]:
+            if i != Change[answer] and i != Change[answer2]:
                 self.dealer.deck.append(i) 
 
     def challenge(self):
@@ -155,27 +148,28 @@ class game:
         while True:
             print(f'\n{player.name} Turn!:')
             self.show_people()
-            print('Dead Cards:')
+            print('\n Dead Cards:')
             self.dealer.print_dead_deck()
             select = self.console.print_turn_menu()
             if select == 0:
                 print(player.look_at_the_hand())
+
             elif select == 1:
                 select2 = self.console.print_general_action_menu()
+
                 if select2==0:
                     self.hit(player)
-                    
+                  
                 elif select2==1:
-
                     self.income(player)
 
-                    
                 elif select2==2:
-                    self.foreign_aid(player)
-                    
+                    self.foreign_aid(player)          
                 break
+
             elif select==2:
                 select2=self.console.print_character_action_menu()
+
                 if select2==0:
                     player.duke_tax(player)
                     
@@ -187,7 +181,6 @@ class game:
                     
                 elif select2==3:
                     self.ambassador_change(player)
-
                 break
 
 

@@ -29,14 +29,10 @@ class Player:
 
     def plus_money(self, value):
         self.__money += value
-
     
     def assassin_murder():
         print("You have to turn one of your cards")
-
         pass
-
-
 
     def captain_extortion():
         pass
