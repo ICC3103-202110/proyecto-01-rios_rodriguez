@@ -17,6 +17,9 @@ def menu():
                 while var:
                     for a in Game.player_list:
                         Game.turn(a)
+                        for j in Game.player_list:
+                            if j!=a:
+                                Game.challenge(a)
                     break
             except ValueError as e:
                 print(e)

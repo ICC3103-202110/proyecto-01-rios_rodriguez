@@ -141,6 +141,16 @@ class game:
             if i!=Change[answer] and i!=Change[answer2]:
                 self.dealer.deck.append(i) 
 
+    def challenge(self):
+        print("Someone wants to challenge him/her? Yes or No? (y/n)")
+        for (i,_) in enumerate(self.player_list):
+            answer = input(f"{self.player_list[i].name}: ")
+            # ver el tema de que no se caiga si uno pone yes or no en minuscula
+            if answer == "Yes":
+                continue
+            elif answer == "No":
+                continue
+
     def turn(self,player):
         while True:
             print(f'\n{player.name} Turn!:')
