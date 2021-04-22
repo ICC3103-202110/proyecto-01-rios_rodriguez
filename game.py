@@ -197,12 +197,18 @@ class game:
                                     answer = True
                                     self.dealer.deck.append(card(value))
                                     j = 0
-                                    for i in player.hand:
-                                        if i.type == value:
+                                    for p in player.hand:
+                                        if p.type == value:
                                             player.hand.pop(j)
                                         j+=1
                                     self.dealer.deal_card(player)
+                                    print('You lose, turn up a card!')
+                                    i.look_at_the_hand()
+                                    answer = int(input('Choose a card: '))
+                                    self.dealer.dead_deck.append(i.hand[answer])
+                                    i.hand.pop(answer)
                                     break
+
                                 else:
                                     print('You lose, turn up a card:')
                                     answer = int(input('Choose a card: '))
