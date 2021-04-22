@@ -18,14 +18,7 @@ def menu():
                     for a in Game.player_list:
                         Game.turn(a)
                         
-                        for j in Game.player_list:
-                            if j!=a:
-                                game_challenge = Game.challenge(j)
-                                if game_challenge == True:
-                                    Game.yes_challenge(a)
-                                    pass
-                                else:
-                                    pass
+                      
     
                     break
             except ValueError as e:

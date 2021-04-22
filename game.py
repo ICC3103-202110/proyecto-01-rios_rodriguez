@@ -139,7 +139,7 @@ class game:
         elif answer == "n":
             return False
 
-    def yes_challenge(self, player):
+    def yes_challenge(self, player,value):
         player.look_at_the_hand()
 
         for i in player.hand:
@@ -148,11 +148,18 @@ class game:
             else:
                 return False
     
+            """
+    def challenge2(self,player):
+         for j in Game.player_list:
+                if j!=a:
+                    game_challenge = Game.challenge(j)
+                        if game_challenge == True:
+                             Game.yes_challenge(a)
+                             pass
+                        else:
+                             pass
 
-
-
-
-
+                """
 
 
 
@@ -185,7 +192,19 @@ class game:
                 select2=self.console.print_character_action_menu()
 
                 if select2==0:
-                    player.duke_tax(player)
+                    for i in self.player_list:
+                        if i!=player:
+                            game_challenge= self.challenge(i)
+                            if game_challenge== True:
+                                value = "Duke"
+                                if self.yes_challenge(player,value) == True:
+                                    print('True')
+                                    pass
+                                else:
+                                    print('Bluff')
+                            elif game_challenge== False:
+                                player.duke_tax(player)
+                    self.duke_tax(player)
                     """
                     value = "Duke"
                     if yes_challenge(player) == True:
