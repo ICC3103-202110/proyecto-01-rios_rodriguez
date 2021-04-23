@@ -273,7 +273,7 @@ class game:
                     y = self.challenge(player,'Ambassador')
                     if y == True:
                         self.ambassador_change(player)
-                    
+            break    
 
                 
                
