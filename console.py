@@ -5,6 +5,7 @@ class Console():
         print("0. Start the game ")
         print("1. Add player ")
         print("2. Show players ")
+        print("4. Show players cards")
         print('3. Quit')
         return int(input())
 

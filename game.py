@@ -42,6 +42,12 @@ class game:
                  +f"{len(self.player_list[i].hand)} cards")
         print(f"\nThe dealer has {len(self.dealer.deck)} cards")
 
+    def show_all_the_people_info(self):
+        for i in self.player_list:
+            for j in i.hand:
+                print(j.type)
+
+
     def hit(self, player):
         player.plus_money(-7)
         print("Who do you want to hit?")
@@ -134,7 +140,7 @@ class game:
                 self.dealer.deck.append(i) 
 
     def challenge_part1(self, player):
-        answer = input(f"{player.name}, do you want to challenge him/her?: ")
+        answer = input(f"{player.name}, do you want to challenge him/her? (y/n): ")
         if answer == "y":
             return True     
         elif answer == "n":
@@ -142,7 +148,6 @@ class game:
 
     def yes_challenge(self, player,value):
         player.look_at_the_hand()
-        lista=[]
         if len(player.hand) == 2:
             if player.hand[0].type == value or player.hand[1].type == value:
                 return True
@@ -177,7 +182,6 @@ class game:
                         self.dealer.dead_deck.append(i.hand[answer])
                         i.hand.pop(answer)
                         break
-
                     else:
                         print('You lose, turn up a card:')
                         answer = int(input('Choose a card: '))
@@ -189,10 +193,29 @@ class game:
                     answer = True
         if answer == True:
             return True
-
         else:
             return False
-                 
+    
+    def counterattack_part1(self, player):
+            answer = input(f"{player.name}, do you want to counterattack him/her? (y/n): ")
+            if answer == "y":
+                return True     
+            elif answer == "n":
+                return False
+
+    def counterattack(self, player, value):
+        for i in self.player_list:
+            if i != player:
+                game_counterattack = self.counterattack_part1(i)
+                if game_counterattack == True:
+                    a = self.challenge(i, value)
+                    if a == True:
+                        return False
+                    else:
+                        return True
+                else:
+                    #si no te desafia, ver el tema del counterattack
+                    return False
 
     def turn(self,player):
         while True:
@@ -213,36 +236,49 @@ class game:
                   
                 elif select2==1:
                     self.income(player)
+                    #esta accion no puede ser bloqueada
 
                 elif select2==2:
-                    self.foreign_aid(player)          
-                break
+                    x = self.counterattack(player, 'Duke')
+                    if x == True:
+                        self.foreign_aid(player)
 
             elif select == 2:
                 select2 = self.console.print_character_action_menu()
 
                 if select2 == 0:
-                    y=self.challenge(player,'Duke')
+                    y = self.challenge(player,'Duke')
                     if y == True:
                         self.duke_tax(player)
                  
-                elif select2==1:
-                
-                    y=self.challenge(player,'Assassin')
+                elif select2==1: 
+                    y = self.challenge(player,'Assassin')
                     if y == True:
-                        self.assassin(player)
-
+                        x = self.counterattack(player, 'Contessa')
+                        if x == True:
+                            self.assassin(player)
+                        else:
+                            print("You avoided the murder succesfully")
                     
                 elif select2==2:
                     y=self.challenge(player,'Captain')
                     if y == True:
-                        self.captain_extortion(player)
-                    
+                        x = self.counterattack(player, 'Ambassador')
+                        #falta capitan
+                        if x == True:
+                            self.captain_extortion(player)
+                        else:
+                            print("You avoided the extortion successfully")
+                        
                 elif select2==3:
                     y=self.challenge(player,'Ambassador')
                     if y == True:
                         self.ambassador_change(player)
-                break
+                    
+
+                
+               
+            
 
 
 

@@ -27,6 +27,8 @@ def menu():
             Game.show_people()
         if selection == 3:
             break
+        if selection == 4:
+            Game.show_all_the_people_info()
          
 if __name__== "__main__":
     menu()
