@@ -30,26 +30,7 @@ class Player:
 
     def plus_money(self, value):
         self.__money += value
-    
-    def assassin_murder():
-        print("You have to turn one of your cards")
-        pass
 
-    def captain_extortion():
-        pass
-
-    def ambassador_change():
-        pass
-
-    def duke_stop_foreign_aid():
-
-        pass
-
-    def contessa_stop_murder():
-        pass
-
-    def ambassador_or_captain_stop_extortion():
-        pass
 
 
 

@@ -316,16 +316,16 @@ class game:
                 if select2 == 0:
                     self.hit(player)
                     #esta accion no puede ser bloqueada
-                  
+                    break
                 elif select2 == 1:
                     self.income(player)
                     #esta accion no puede ser bloqueada
-
+                    break
                 elif select2 == 2:
                     x = self.counterattack(player, 'Duke')
                     if x == True:
                         self.foreign_aid(player)
-
+                    break
             elif select == 2:
                 select2 = self.console.print_character_action_menu()
 
@@ -334,7 +334,7 @@ class game:
                     if y == True or y == 0:
                         print("You earned 3 coins! ")
                         self.duke_tax(player)
-                 
+                    break
                 elif select2 == 1: 
                     y = self.challenge(player,'Assassin')
                     if y == True or y == 0:
@@ -343,7 +343,7 @@ class game:
                             print("You avoided the murder succesfully")     
                         else:
                             self.assassin(player)
-                    
+                    break
                 elif select2 == 2:
                     y = self.challenge(player,'Captain')
                     if y == True or y == 0:
@@ -353,12 +353,12 @@ class game:
                             print("You avoided the extortion successfully")
                         else:
                             self.captain_extortion(player)        
-                        
+                    break    
                 elif select2 == 3:
                     y = self.challenge(player,'Ambassador')
                     if y == True or y == 0:
                         self.ambassador_change(player)
-            break    
+                    break
 
                 
                
