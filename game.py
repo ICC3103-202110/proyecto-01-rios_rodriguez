@@ -222,43 +222,9 @@ class game:
                 select2 = self.console.print_character_action_menu()
 
                 if select2 == 0:
-                    for i in self.player_list:
-                        if i != player:
-                            game_challenge = self.challenge_part1(i)
-                            if game_challenge == True:
-                                value = "Duke"
-                                v = self.yes_challenge(player,value)
-                                if v == True:
-                                    print(f'{player.name} you won the challenge')
-                                    answer = True
-                                    self.dealer.deck.append(card(value))
-                                    j = 0
-                                    for p in player.hand:
-                                        if p.type == value:
-                                            player.hand.pop(j)
-                                        j+=1
-                                    self.dealer.deal_card(player)
-                                    print(f'{i.name} you lose, turn up a card!')
-                                    i.look_at_the_hand()
-                                    answer = int(input('Choose a card: '))
-                                    self.dealer.dead_deck.append(i.hand[answer])
-                                    i.hand.pop(answer)
-                                    break
-
-                                else:
-                                    print(f'{player.name} you lose, turn up a card:')
-                                    answer = int(input('Choose a card: '))
-                                    self.dealer.dead_deck.append(player.hand[answer])
-                                    player.hand.pop(answer)
-                                    answer = False
-                                    break
-                            elif game_challenge == False:
-                                answer = True
-                    if answer == True:
+                    y=self.challenge(player,'Duke')
+                    if y == True:
                         self.duke_tax(player)
-
-                    else:
-                        pass
                  
                 elif select2==1:
                 
