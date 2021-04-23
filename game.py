@@ -214,6 +214,7 @@ class game:
                     a = self.challenge(i, value)
                     if a == True:
                         return False
+                
                     elif a == 0:
                         return True
                     else:
@@ -335,15 +336,19 @@ class game:
                         print("You earned 3 coins! ")
                         self.duke_tax(player)
                     break
+
                 elif select2 == 1: 
                     y = self.challenge(player,'Assassin')
-                    if y == True or y == 0:
-                        x = self.counterattack(player, 'Contessa')
-                        if x == False or y == 0:
-                            print("You avoided the murder succesfully")     
-                        else:
-                            self.assassin(player)
-                    break
+                    if y == True:
+                        self.assassin(player)
+                    elif y == 0:
+                        c = self.counterattack(player, 'Contessa')
+                        if c == False or c == True:
+                            print("You avoided the murder succesfully")
+                    else:
+                        self.assassin(player) 
+                    break  
+
                 elif select2 == 2:
                     y = self.challenge(player,'Captain')
                     if y == True or y == 0:

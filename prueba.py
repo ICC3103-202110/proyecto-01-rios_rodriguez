@@ -196,3 +196,15 @@ def yes_challenge_with_2_values(self, player, value, value2):
             return False
 
 
+
+
+
+  y = self.challenge(player,'Assassin')
+                    if y == True or y == 0:
+                        x = self.counterattack(player, 'Contessa')
+                        if x == False:
+                            print("You avoided the murder succesfully")     
+                        else:
+                            self.assassin(player)
+                    
+
