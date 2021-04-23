@@ -65,8 +65,7 @@ class game:
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
-        print(self.player_list[question].hand[answer-1].type)
-        print(self.dealer.dead_deck[0].type)
+        self.you_lost(self.player_list[question])
 
     def assassin(self, player):
         player.plus_money(-3)
@@ -85,8 +84,7 @@ class game:
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
-        print(self.player_list[question].hand[answer-1].type)
-        print(self.dealer.dead_deck[0].type)
+        self.you_lost(self.player_list[question])
 
 
     def income(self, player):
@@ -168,7 +166,7 @@ class game:
                 if game_challenge == True:
                     v = self.yes_challenge(player,value)
                     if v == True:
-                        print(f'\n{player}, you won the challenge')
+                        print(f'\n{player.name}, you won the challenge')
                         answer = True
                         self.dealer.deck.append(card(value))
                         j = 0
@@ -177,17 +175,19 @@ class game:
                                 player.hand.pop(j)
                             j+=1
                         self.dealer.deal_card(player)
-                        print(f'\n{i}, you lost the challenge, turn up a card!')
+                        print(f'\n{i.name}, you lost the challenge, turn up a card!')
                         i.look_at_the_hand()
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(i.hand[answer])
                         i.hand.pop(answer)
+                        self.you_lost(i)
                         break
                     else:
-                        print(f'\n {player} you lost the challenge, turn up a card:')
+                        print(f'\n {player.name} you lost the challenge, turn up a card:')
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(player.hand[answer])
                         player.hand.pop(answer)
+                        self.you_lost(player)
                         answer = False
                         break
                 elif game_challenge == False:
@@ -245,6 +245,7 @@ class game:
                     if v == True:
                         print(f'\n{player.name}, you won the challenge')
                         answer = True
+
                         #revisar aca
                         self.dealer.deck.append(card(value))
                         j = 0
@@ -289,6 +290,15 @@ class game:
                         return True
                 else:
                     continue
+
+    def you_lost(self, player):
+        if len(player.hand) == 0:
+            j = 0
+            for i in self.player_list:
+                if i.name == player.name: 
+                    print(f"{player.name}, you lost") 
+                    self.player_list.pop(j)
+                j += 1
 
     def turn(self,player):
         while True:

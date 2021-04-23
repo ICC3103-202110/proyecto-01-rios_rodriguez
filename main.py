@@ -17,7 +17,6 @@ def menu():
                 while var:
                     for a in Game.player_list:
                         Game.turn(a)
-                    break
             except ValueError as e:
                 print(e)
         if selection == 1:
