@@ -4,8 +4,8 @@ import random
 class dealer:
     def __init__(self):
         self.__deck = [card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
-                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
-                     card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa') ] 
+                       card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa'),
+                       card('Duke'),card('Assassin'),card('Captain'),card('Ambassador'),card('Contessa') ] 
         self.__dead_deck = list()
         
     @property

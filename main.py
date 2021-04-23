@@ -5,7 +5,7 @@ from player import Player
 from random import shuffle
 
 def menu():
-    Game=game()
+    Game = game()
     Game.dealer.deck_shuffle
     print("\nWe must first start by creating the players.")
     print("Remember that only can play 3 or 4 players")
@@ -13,13 +13,10 @@ def menu():
         selection = Game.console.print_menu_and_select()
         if selection == 0:
             try:
-                var=Game.start_game()
+                var = Game.start_game()
                 while var:
                     for a in Game.player_list:
                         Game.turn(a)
-                        
-                      
-    
                     break
             except ValueError as e:
                 print(e)

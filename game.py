@@ -38,8 +38,8 @@ class game:
         print("\nPlayer list:")
         for (i, _) in enumerate(self.player_list):
             print(f"{i}: {self.player_list[i].name} - "
-            +f"{self.player_list[i].money} coins - "
-            +f"{len(self.player_list[i].hand)} cards")
+                 +f"{self.player_list[i].money} coins - "
+                 +f"{len(self.player_list[i].hand)} cards")
         print(f"\nThe dealer has {len(self.dealer.deck)} cards")
 
     def hit(self, player):

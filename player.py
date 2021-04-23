@@ -22,10 +22,10 @@ class Player:
 
     def look_at_the_hand(self):
         print('Your cards are:')
-        j=0
+        j = 0
         for i in self.hand:
             print(j,":",i.type)
-            j+=1
+            j += 1
         
 
     def plus_money(self, value):
