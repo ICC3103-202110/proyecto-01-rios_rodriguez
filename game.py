@@ -75,7 +75,7 @@ class game:
                 continue
             else:
                 print(f"{i}: {self.player_list[i].name}")
-        question = int(input("(Select (0,1,2): "))
+        question = int(input("(Select (0,1,2,3): "))
         print(f"\n The player {self.player_list[question].name} has to turn up a card")
         j = 0
         for i in self.player_list[question].hand:
@@ -160,6 +160,7 @@ class game:
     def challenge(self,player,value):
         answer = ""
         answer2 = ""
+        answer3=''
         for i in self.player_list:
             if i != player:
                 game_challenge = self.challenge_part1(i)
@@ -181,7 +182,9 @@ class game:
                         self.dealer.dead_deck.append(i.hand[answer])
                         i.hand.pop(answer)
                         self.you_lost(i)
+                        answer3=1
                         break
+                  
                     else:
                         print(f'\n {player.name} you lost the challenge, turn up a card:')
                         answer = int(input('Choose a card: '))
@@ -189,6 +192,7 @@ class game:
                         player.hand.pop(answer)
                         self.you_lost(player)
                         answer = False
+                        answer3=1
                         break
                 elif game_challenge == False:
                     answer2 = True
@@ -196,6 +200,8 @@ class game:
             return True
         elif answer2 == True:
             return 0
+        elif answer3 == 1:
+            return 1
         else:
             return False
     
@@ -339,12 +345,16 @@ class game:
 
                 elif select2 == 1: 
                     y = self.challenge(player,'Assassin')
-                    if y == True:
+                    if y == 1:
+                        break
+                    elif y == True:
                         self.assassin(player)
                     elif y == 0:
                         c = self.counterattack(player, 'Contessa')
                         if c == False or c == True:
                             print("You avoided the murder succesfully")
+                        else:
+                            self.assassin(player)
                     else:
                         self.assassin(player) 
                     break  
