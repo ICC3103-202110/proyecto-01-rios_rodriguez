@@ -103,8 +103,8 @@ class game:
                 continue
             else:
                 print(f"{i}: {self.player_list[i].name}")
-        question = int(input("Select (0,1,2): "))
-        print(f"\n The player {self.player_list[question].name} will loose 2 coins")
+        question = int(input("Select (0,1,2,3): "))
+        print(f"\nThe player {self.player_list[question].name} will loose 2 coins")
         if self.player_list[question].money == 1:
             self.player_list[question].plus_money(-1)
             player.plus_money(+1)
@@ -182,7 +182,7 @@ class game:
                         self.dealer.dead_deck.append(i.hand[answer])
                         i.hand.pop(answer)
                         self.you_lost(i)
-                        answer3=1
+                        answer3 = 1
                         break
                   
                     else:
@@ -192,7 +192,7 @@ class game:
                         player.hand.pop(answer)
                         self.you_lost(player)
                         answer = False
-                        answer3=1
+                        answer3 = 1
                         break
                 elif game_challenge == False:
                     answer2 = True
@@ -244,6 +244,7 @@ class game:
     def challenge_with_2_values(self, player, value, value2):
         answer = ""
         answer2 = ""
+        answer3 = ""
         for i in self.player_list:
             if i != player:
                 game_challenge = self.challenge_part1(i)
@@ -266,6 +267,8 @@ class game:
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(i.hand[answer])
                         i.hand.pop(answer)
+                        self.you_lost(i)
+                        answer3 = 1
                         break
                     else:
                         print(f'\n {player.name} you lost the challenge, turn up a card:')
@@ -273,13 +276,17 @@ class game:
                         self.dealer.dead_deck.append(player.hand[answer])
                         player.hand.pop(answer)
                         answer = False
+                        self.you_lost(player)
+                        answer3 = 1
                         break
                 elif game_challenge == False:
                     answer2 = True
         if answer == True:
             return True
-        if answer2 == True:
+        elif answer2 == True:
             return 0
+        elif answer3 == 1:
+            return 1
         else:
             return False
 
@@ -330,15 +337,20 @@ class game:
                     break
                 elif select2 == 2:
                     x = self.counterattack(player, 'Duke')
-                    if x == True:
+                    if x == True or x == False:
+                        print("You blocked the foreign aid")
+                    else:
                         self.foreign_aid(player)
                     break
+                
             elif select == 2:
                 select2 = self.console.print_character_action_menu()
 
                 if select2 == 0:
                     y = self.challenge(player,'Duke')
-                    if y == True or y == 0:
+                    if y == 1:
+                        break
+                    elif y == True or y == 0:
                         print("You earned 3 coins! ")
                         self.duke_tax(player)
                     break
@@ -361,17 +373,25 @@ class game:
 
                 elif select2 == 2:
                     y = self.challenge(player,'Captain')
-                    if y == True or y == 0:
+                    if y == 1:
+                        break
+                    elif y == True:
+                        self.captain_extortion(player)
+                    elif y == 0:
                         x = self.counterattack_with_2_values(player, 'Ambassador', 'Captian')
-                        #falta capitan
-                        if x == False or y == 0:
+                        if x == False or x == True:
                             print("You avoided the extortion successfully")
                         else:
-                            self.captain_extortion(player)        
+                            self.captain_extortion(player)
+                    else:
+                        self.captain_extortion(player)       
                     break    
+
                 elif select2 == 3:
                     y = self.challenge(player,'Ambassador')
-                    if y == True or y == 0:
+                    if y == 1:
+                        break
+                    elif y == True or y == 0:
                         self.ambassador_change(player)
                     break
 
