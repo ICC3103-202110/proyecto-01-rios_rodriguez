@@ -241,17 +241,21 @@ class game:
                     continue
 
     def yes_challenge_with_2_values(self, player, value, value2):
-            player.look_at_the_hand()
-            if len(player.hand) == 2:
-                if player.hand[0].type == value or player.hand[1].type == value or player.hand[0].type == value2 or player.hand[1].type == value2:
-                    return True
-                else:
-                    return False
-            elif len(player.hand) == 1:
-                if player.hand[0].type == value or player.hand[0].type == value2:
-                    return True
-                else:
-                    return False
+        player.look_at_the_hand()
+        if len(player.hand) == 2:
+            if player.hand[0].type == value or player.hand[1].type == value:
+                return True, 5
+
+            elif player.hand[0].type == value2 or player.hand[1].type == value2:
+                return True, 6
+            else:
+                return False
+        elif len(player.hand) == 1:
+            if player.hand[0].type == value or player.hand[0].type == value2:
+                return True
+            else:
+                return False
+        
 
     def challenge_with_2_values(self, player, value, value2):
         answer = ""
@@ -266,9 +270,15 @@ class game:
                         print(f'\n{player.name}, you won the challenge')
                         answer = True
                         self.log.append(f"{i.name} challenged {player.name} and lost, so he/she lost an influence")
-
-                        #revisar aca -----------------------------------------------------
-                        self.dealer.deck.append(card(value))
+                        
+                        if v == 5:
+                            self.dealer.deck.append(card(value))
+                            print(card(value).type)
+                            
+                        elif v == 6:
+                            self.dealer.deck.append(card(value2))
+                            print(card(value2).type)
+                          
                         j = 0
                         for p in player.hand:
                             if p.type == value or p.type == value2:
@@ -284,7 +294,8 @@ class game:
                         answer3 = 1
                         break
                     else:
-                        print(f'\n {player.name} you lost the challenge, turn up a card:')
+
+                        print(f'\n{player.name} you lost the challenge, turn up a card:')
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(player.hand[answer])
                         self.log.append(f"{i.name} challenged {player.name} and won, so {player.name} lost an influence")
