@@ -27,18 +27,3 @@ class dealer:
         for i in self.dead_deck:
             print(i.type)
 
-
-'''
-d=dealer()
-d.deck_shuffle()
-p=Player('ismael',5)
-d.deal_card(p)
-d.deal_card(p)
-d.deal_card(p)
-print('')
-#p.look_at_the_hand()
-#print(p.hand[0].type)
-#print(p.hand[1].type)
-
-for i in p.hand:
-    print(i.type)'''
