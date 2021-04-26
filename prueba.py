@@ -2,7 +2,7 @@ from player import Player
 from dealer import dealer
 from card import card
 from game import game
-
+"""
 Game=game()
 contador = 0 
 while True:
@@ -207,4 +207,4 @@ def yes_challenge_with_2_values(self, player, value, value2):
                         else:
                             self.assassin(player)
                     
-
+"""

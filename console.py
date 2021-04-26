@@ -5,7 +5,6 @@ class Console():
         print("0. Start the game ")
         print("1. Add player ")
         print("2. Show players ")
-        print("4. Show players cards")
         print('3. Quit')
         return int(input())
 
@@ -15,6 +14,7 @@ class Console():
          print("0. Look at your hand ")
          print("1. General action ")
          print("2. Card action ")
+         print("3. Ask for the log")
          return int(input())
 
     def print_general_action_menu(self):

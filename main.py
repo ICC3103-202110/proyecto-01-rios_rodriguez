@@ -17,11 +17,19 @@ def menu():
                 while var:
                     for a in Game.player_list:
                         Game.turn(a)
+                    print("\nLog: ")
+                    Game.show_log()
+                    Game.empty_log()
+                    if len(Game.player_list) == 1:
+                        for i in Game.player_list:
+                            print(f"Congratulations {i.name}, you won the game!")
+                        break
+                break
             except ValueError as e:
                 print(e)
+
         if selection == 1:
             Game.create_person()
-            
         if selection == 2:
             Game.show_people()
         if selection == 3:

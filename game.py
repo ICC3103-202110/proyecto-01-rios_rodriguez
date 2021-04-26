@@ -10,6 +10,8 @@ class game:
         self.__player_list = []
         self.__dealer = dealer()
         self.__console = Console()
+        self.__log = []
+
     @property
     def player_list(self):
         return self.__player_list
@@ -19,6 +21,9 @@ class game:
     @property
     def console(self):
         return self.__console
+    @property
+    def log(self):
+        return self.__log
 
     def create_person(self):
         name = input("Enter players name: ")
@@ -47,7 +52,6 @@ class game:
             for j in i.hand:
                 print(j.type)
 
-
     def hit(self, player):
         player.plus_money(-7)
         print("Who do you want to hit?")
@@ -63,6 +67,7 @@ class game:
             print(j,":", i.type)
             j += 1
         answer = int(input("Select an option (0/1): "))
+        self.log.append(f"{self.player_list[question].name} was hit by {player.name}")
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
         self.player_list[question].hand.pop(answer)
         self.you_lost(self.player_list[question])
@@ -83,17 +88,20 @@ class game:
             j += 1 
         answer = int(input("Select an option (0/1): "))
         self.dealer.dead_deck.append(self.player_list[question].hand[answer])
+        self.log.append(f"{self.player_list[question].name} got murdered by {player.name}")
         self.player_list[question].hand.pop(answer)
         self.you_lost(self.player_list[question])
 
-
     def income(self, player):
+        self.log.append(f"{player.name} asked for an income (+1 coin)")
         player.plus_money(1)
 
     def foreign_aid(self, player):
+        self.log.append(f"{player.name} asked for a foreign aid (+2 coins)")
         player.plus_money(2)
 
     def duke_tax(self, player):
+        self.log.append(f"{player.name} asked for a duke tax (+3 coins)")
         player.plus_money(3)
 
     def captain_extortion(self, player):
@@ -108,9 +116,11 @@ class game:
         if self.player_list[question].money == 1:
             self.player_list[question].plus_money(-1)
             player.plus_money(+1)
+            self.log.append(f"{player.name} extorted {self.player_list[question].name} and robbed him/her 1 coin because was {self.player_list[question].name}´s last coin ")
         else:
             self.player_list[question].plus_money(-2)
             player.plus_money(+2)
+            self.log.append(f"{player.name} extorted {self.player_list[question].name} and robbed him/her 2 coins")
 
     def deal_to_list(self,list):
         num= random.randint(0,len(self.dealer.deck)-1)
@@ -135,7 +145,8 @@ class game:
         player.hand.append(Change[answer2])
         for i in Change:
             if i != Change[answer] and i != Change[answer2]:
-                self.dealer.deck.append(i) 
+                self.dealer.deck.append(i)
+        self.log.append(f"{player.name} used the action of the card ambassador to make a change of his/her cards")
 
     def challenge_part1(self, player):
         answer = input(f"{player.name}, do you want to challenge him/her? (y/n): ")
@@ -160,7 +171,7 @@ class game:
     def challenge(self,player,value):
         answer = ""
         answer2 = ""
-        answer3=''
+        answer3 = ""
         for i in self.player_list:
             if i != player:
                 game_challenge = self.challenge_part1(i)
@@ -176,6 +187,7 @@ class game:
                                 player.hand.pop(j)
                             j+=1
                         self.dealer.deal_card(player)
+                        self.log.append(f"{i.name} challenged {player.name} and lost, so he/she lost an influence")
                         print(f'\n{i.name}, you lost the challenge, turn up a card!')
                         i.look_at_the_hand()
                         answer = int(input('Choose a card: '))
@@ -184,11 +196,11 @@ class game:
                         self.you_lost(i)
                         answer3 = 1
                         break
-                  
                     else:
                         print(f'\n {player.name} you lost the challenge, turn up a card:')
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(player.hand[answer])
+                        self.log.append(f"{i.name} challenged {player.name} and he won the challenge, so {player.name} lost an influence")
                         player.hand.pop(answer)
                         self.you_lost(player)
                         answer = False
@@ -253,8 +265,9 @@ class game:
                     if v == True:
                         print(f'\n{player.name}, you won the challenge')
                         answer = True
+                        self.log.append(f"{i.name} challenged {player.name} and lost, so he/she lost an influence")
 
-                        #revisar aca
+                        #revisar aca -----------------------------------------------------
                         self.dealer.deck.append(card(value))
                         j = 0
                         for p in player.hand:
@@ -274,11 +287,13 @@ class game:
                         print(f'\n {player.name} you lost the challenge, turn up a card:')
                         answer = int(input('Choose a card: '))
                         self.dealer.dead_deck.append(player.hand[answer])
+                        self.log.append(f"{i.name} challenged {player.name} and won, so {player.name} lost an influence")
                         player.hand.pop(answer)
                         answer = False
                         self.you_lost(player)
                         answer3 = 1
                         break
+
                 elif game_challenge == False:
                     answer2 = True
         if answer == True:
@@ -310,9 +325,17 @@ class game:
             j = 0
             for i in self.player_list:
                 if i.name == player.name: 
-                    print(f"{player.name}, you lost") 
+                    print(f"{player.name}, you lost")
+                    self.log.append(f"{player.name} lost the game") 
                     self.player_list.pop(j)
                 j += 1
+    
+    def show_log(self):
+        for i in self.log:
+            print(i)
+
+    def empty_log(self):
+        self.__log = []
 
     def turn(self,player):
         while True:
@@ -326,26 +349,28 @@ class game:
 
             elif select == 1:
                 select2 = self.console.print_general_action_menu()
-
                 if select2 == 0:
-                    self.hit(player)
-                    #esta accion no puede ser bloqueada
-                    break
+                    if player.money >= 7:
+                        self.hit(player)
+                        break
+                    else: 
+                        print(f"\nYou have {player.money} coins and this action costs 7 coins")
+                        print("Select another option")
+
                 elif select2 == 1:
                     self.income(player)
-                    #esta accion no puede ser bloqueada
                     break
                 elif select2 == 2:
                     x = self.counterattack(player, 'Duke')
                     if x == True or x == False:
                         print("You blocked the foreign aid")
+                        self.log.append(f"{player.name}, your action foreign aid got blocked")
                     else:
                         self.foreign_aid(player)
                     break
-                
+
             elif select == 2:
                 select2 = self.console.print_character_action_menu()
-
                 if select2 == 0:
                     y = self.challenge(player,'Duke')
                     if y == 1:
@@ -354,24 +379,29 @@ class game:
                         print("You earned 3 coins! ")
                         self.duke_tax(player)
                     break
-
                 elif select2 == 1: 
-                    y = self.challenge(player,'Assassin')
-                    if y == 1:
-                        break
-                    elif y == True:
-                        self.assassin(player)
-                    elif y == 0:
-                        c = self.counterattack(player, 'Contessa')
-                        if c == False or c == True:
-                            print("You avoided the murder succesfully")
-                        else:
+                    if player.money >= 3:
+                        y = self.challenge(player,'Assassin')
+                        if y == 1:
+                            break
+                        elif y == True:
                             self.assassin(player)
+                        elif y == 0:
+                            c = self.counterattack(player, 'Contessa')
+                            if c == False or c == True:
+                                print("You avoided the murder succesfully")
+                                self.log.append(f"{player.name}, your action assassin got blocked")
+                            else:
+                                self.assassin(player)
+                        else:
+                            self.assassin(player) 
+                        break 
                     else:
-                        self.assassin(player) 
-                    break  
+                        print(f"\nYou have {player.money} coins and this action costs 3 coins")
+                        print("Select another option")
 
                 elif select2 == 2:
+                    
                     y = self.challenge(player,'Captain')
                     if y == 1:
                         break
@@ -381,6 +411,7 @@ class game:
                         x = self.counterattack_with_2_values(player, 'Ambassador', 'Captian')
                         if x == False or x == True:
                             print("You avoided the extortion successfully")
+                            self.log.append(f"{player.name}, your action extortion got blocked")
                         else:
                             self.captain_extortion(player)
                     else:
@@ -394,10 +425,12 @@ class game:
                     elif y == True or y == 0:
                         self.ambassador_change(player)
                     break
-
-                
-               
             
+            elif select == 3:
+                print("")
+                self.show_log()
+                
+         
 
 
 
